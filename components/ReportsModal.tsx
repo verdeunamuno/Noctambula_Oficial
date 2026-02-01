@@ -133,11 +133,13 @@ const ReportsModal: React.FC<ReportsModalProps> = ({ isOpen, onClose, tickets, o
     }
   }, [stats]);
 
-  // Lógica de reimpresión de ticket
+  // Lógica de reimpresión de ticket individual
   useEffect(() => {
     if (isReprintingPhase && ticketToReprint) {
       const timer = setTimeout(() => {
+        document.body.classList.add('printing-ticket');
         window.print();
+        document.body.classList.remove('printing-ticket');
         setIsReprintingPhase(false);
       }, 300);
       return () => clearTimeout(timer);
@@ -150,7 +152,9 @@ const ReportsModal: React.FC<ReportsModalProps> = ({ isOpen, onClose, tickets, o
     const barImg = barChartRef.current?.toDataURL('image/png') || '';
     setChartImages({ pie: pieImg, bar: barImg });
     setTimeout(() => {
+      document.body.classList.add('printing-report');
       window.print();
+      document.body.classList.remove('printing-report');
       setIsPreparingPDF(false);
     }, 500);
   };

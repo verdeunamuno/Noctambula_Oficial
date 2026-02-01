@@ -32,8 +32,8 @@
         @media print {
             #root { display: none !important; }
             
-            /* Ticket Estilo */
-            #printable-ticket {
+            /* Solo mostrar ticket si el body tiene la clase */
+            body.printing-ticket #printable-ticket {
                 display: block !important;
                 position: fixed;
                 left: 0; top: 0; width: 80mm;
@@ -41,8 +41,8 @@
                 font-family: 'Courier New', Courier, monospace; font-size: 12px;
             }
 
-            /* Informe Estilo A4 */
-            #printable-report {
+            /* Solo mostrar informe si el body tiene la clase */
+            body.printing-report #printable-report {
                 display: block !important;
                 background: white;
                 color: black;

@@ -36,7 +36,9 @@ const SalesModal: React.FC<SalesModalProps> = ({ isOpen, onClose, pizzas, ingred
   useEffect(() => {
     if (isPrintingPhase && currentTicketForPrint) {
       const timer = setTimeout(() => {
+        document.body.classList.add('printing-ticket');
         window.print();
+        document.body.classList.remove('printing-ticket');
         setIsPrintingPhase(false);
       }, 300);
       return () => clearTimeout(timer);
